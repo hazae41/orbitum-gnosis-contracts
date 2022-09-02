@@ -28,12 +28,13 @@ contract Gateway {
   function create(
     string calldata id,
     string calldata forum,
+    address author,
     string calldata title,
     string memory text
   ) public {
     require(msg.sender == relayer, "Not relayer");
 
-    emit Topic(id, forum, msg.sender, title, text);
+    emit Topic(id, forum, author, title, text);
   }
 
   event Post(
@@ -46,10 +47,11 @@ contract Gateway {
   function reply(
     string calldata id,
     string calldata topic, 
+    address author,
     string memory text
   ) public {
     require(msg.sender == relayer, "Not relayer");
     
-    emit Post(id, topic, msg.sender, text);
+    emit Post(id, topic, author, text);
   }
 }

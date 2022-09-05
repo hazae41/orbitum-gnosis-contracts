@@ -23,7 +23,7 @@ contract Gateway is Relayable {
         string calldata title,
         string memory text
     ) public onlyRelayer {
-        emit Topic(topic, post, author, forum, title, text);
+        emit Created(topic, post, author, forum, title, text);
     }
 
     event Replied(
@@ -39,7 +39,7 @@ contract Gateway is Relayable {
         address author,
         string memory text
     ) public onlyRelayer {
-        emit Post( topic, author, text);
+        emit Replied( topic, author, text);
     }
 
 }

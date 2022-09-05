@@ -39,7 +39,7 @@ contract Gateway is Relayable {
         address author,
         string memory text
     ) public onlyRelayer {
-        emit Replied( topic, author, text);
+        emit Replied(topic, post, author, text);
     }
 
 }

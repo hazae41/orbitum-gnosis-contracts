@@ -7,7 +7,7 @@ import "./relayable.sol";
 contract Gateway is Relayable {
 
     event Topic(
-        uint256 indexed id,
+        uint256 indexed topic,
         uint256 indexed post,
         address indexed author,
         string forum,
@@ -27,19 +27,19 @@ contract Gateway is Relayable {
     }
 
     event Post(
-        uint256 indexed id,
         uint256 indexed topic,
+        uint256 indexed post,
         address indexed author,
         string text
     );
 
     function reply(
-        uint256 id,
         uint256 topic,
+        uint256 post,
         address author,
         string memory text
     ) public onlyRelayer {
-        emit Post(id, topic, author, text);
+        emit Post(topic, post, author, text);
     }
 
 }

@@ -54,7 +54,7 @@ contract Forums is Relayable {
         emit Ownership(name, owner);
     }
 
-    event Promotion(
+    event Promoted(
         string name,
         address indexed moderator
     );
@@ -63,10 +63,10 @@ contract Forums is Relayable {
         string calldata name,
         address moderator
     ) public onlyRelayer {
-        emit Promotion(name, moderator);
+        emit Promoted(name, moderator);
     }
 
-    event Unpromotion(
+    event Unpromoted(
         string name,
         address indexed moderator
     );
@@ -75,7 +75,7 @@ contract Forums is Relayable {
         string calldata name,
         address moderator
     ) public onlyRelayer {
-        emit Unpromotion(name, moderator);
+        emit Unpromoted(name, moderator);
     }
 
 }

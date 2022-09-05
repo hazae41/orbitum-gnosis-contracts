@@ -1,25 +1,17 @@
-pragma solidity >=0.8.7;
-
 // SPDX-License-Identifier: MIT
 
-contract Gateway {
-    address relayer;
+pragma solidity >=0.8.7;
 
-    constructor() {
-        relayer = msg.sender;
-    }
+import "./relayable.sol";
 
-    function transfer(address relayer2) public {
-        require(msg.sender == relayer, "Not relayer");
-
-        relayer = relayer2;
-    }
+contract Gateway is Relayable {
 
     event Topic(
         uint256 indexed id,
         address indexed author,
         string forum,
-        string title
+        string title,
+        string text
     );
 
     function create(
@@ -29,11 +21,8 @@ contract Gateway {
         string calldata forum,
         string calldata title,
         string memory text
-    ) public {
-        require(msg.sender == relayer, "Not relayer");
-
-        emit Topic(topic, author, forum, title);
-        emit Post(post, topic, author, text);
+    ) public onlyRelayer {
+        emit Topic(topic, author, forum, title, text);
     }
 
     event Post(
@@ -48,9 +37,8 @@ contract Gateway {
         uint256 topic,
         address author,
         string memory text
-    ) public {
-        require(msg.sender == relayer, "Not relayer");
-
+    ) public onlyRelayer {
         emit Post(id, topic, author, text);
     }
+
 }

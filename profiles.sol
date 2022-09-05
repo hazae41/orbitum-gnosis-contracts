@@ -1,19 +1,10 @@
-pragma solidity >=0.8.7;
-
 // SPDX-License-Identifier: MIT
 
-contract Profiles {
-  address relayer;
+pragma solidity >=0.8.7;
 
-  constructor() {
-    relayer = msg.sender;
-  }
+import "./relayable.sol";
 
-  function transfer(address relayer2) public {
-    require(msg.sender == relayer, "Not relayer");
-
-    relayer = relayer2;
-  }
+contract Profiles is Relayable {
 
   event Nickname(
     address indexed id,
@@ -23,9 +14,7 @@ contract Profiles {
   function setNickname(
     address id,
     string calldata nickname
-  ) public {
-    require(msg.sender == relayer, "Not relayer");
-
+  ) public onlyRelayer {
     emit Nickname(id, nickname);
   }
 
@@ -37,9 +26,7 @@ contract Profiles {
   function setAvatar(
     address id,
     string calldata avatar
-  ) public {
-    require(msg.sender == relayer, "Not relayer");
-
+  ) public onlyRelayer {
     emit Avatar(id, avatar);
   }
 
@@ -51,9 +38,8 @@ contract Profiles {
   function setDescription(
     address id,
     string memory description
-  ) public {
-    require(msg.sender == relayer, "Not relayer");
-
+  ) public onlyRelayer {
     emit Description(id, description);
   }
+  
 }

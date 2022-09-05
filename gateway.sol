@@ -30,6 +30,7 @@ contract Gateway is Relayable {
         uint256 indexed topic,
         uint256 indexed post,
         address indexed author,
+        string forum,
         string text
     );
 
@@ -37,9 +38,10 @@ contract Gateway is Relayable {
         uint256 topic,
         uint256 post,
         address author,
+        string calldata forum,
         string memory text
     ) public onlyRelayer {
-        emit Replied(topic, post, author, text);
+        emit Replied(topic, post, author, forum, text);
     }
 
 }

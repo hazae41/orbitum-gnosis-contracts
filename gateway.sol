@@ -8,6 +8,7 @@ contract Gateway is Relayable {
 
     event Topic(
         uint256 indexed id,
+        uint256 indexed post,
         address indexed author,
         string forum,
         string title,
@@ -22,7 +23,7 @@ contract Gateway is Relayable {
         string calldata title,
         string memory text
     ) public onlyRelayer {
-        emit Topic(topic, author, forum, title, text);
+        emit Topic(topic, post, author, forum, title, text);
     }
 
     event Post(

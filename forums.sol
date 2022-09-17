@@ -6,7 +6,7 @@ import "./relayable.sol";
 
 contract Forums is Relayable {
 
-    event Avatar(
+    event AvatarChanged(
         string name,
         string avatar
     );
@@ -15,10 +15,10 @@ contract Forums is Relayable {
         string calldata name,
         string calldata avatar
     ) public onlyRelayer {
-        emit Avatar(name, avatar);
+        emit AvatarChanged(name, avatar);
     }
 
-    event Description(
+    event DescriptionChanged(
         string name,
         string description
     );
@@ -27,10 +27,10 @@ contract Forums is Relayable {
         string calldata name,
         string memory description
     ) public onlyRelayer {
-        emit Description(name, description);
+        emit DescriptionChanged(name, description);
     }
 
-    event NSFW(
+    event NSFWChanged(
         string name,
         bool nsfw
     );
@@ -39,10 +39,10 @@ contract Forums is Relayable {
         string calldata name,
         bool nsfw
     ) public onlyRelayer {
-        emit NSFW(name, nsfw);
+        emit NSFWChanged(name, nsfw);
     }
 
-    event Ownership(
+    event OwnershipChanged(
         string name,
         address indexed owner
     );
@@ -51,10 +51,10 @@ contract Forums is Relayable {
         string calldata name,
         address owner
     ) public onlyRelayer {
-        emit Ownership(name, owner);
+        emit OwnershipChanged(name, owner);
     }
 
-    event Address(
+    event AddressChanged(
       string name,
       address indexed addr
     );
@@ -63,10 +63,10 @@ contract Forums is Relayable {
       string calldata name,
       address addr
     ) public onlyRelayer {
-        emit Address(name, addr);
+        emit AddressChanged(name, addr);
     }
 
-    event Promoted(
+    event ModeratorPromoted(
         string name,
         address indexed moderator
     );
@@ -75,10 +75,10 @@ contract Forums is Relayable {
         string calldata name,
         address moderator
     ) public onlyRelayer {
-        emit Promoted(name, moderator);
+        emit ModeratorPromoted(name, moderator);
     }
 
-    event Unpromoted(
+    event ModeratorUnpromoted(
         string name,
         address indexed moderator
     );
@@ -87,7 +87,7 @@ contract Forums is Relayable {
         string calldata name,
         address moderator
     ) public onlyRelayer {
-        emit Unpromoted(name, moderator);
+        emit ModeratorUnpromoted(name, moderator);
     }
 
 }

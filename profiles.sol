@@ -6,7 +6,7 @@ import "./relayable.sol";
 
 contract Profiles is Relayable {
 
-    event Nickname(
+    event NicknameChanged(
         address indexed id,
         string nickname
     );
@@ -15,10 +15,10 @@ contract Profiles is Relayable {
         address id,
         string calldata nickname
     ) public onlyRelayer {
-        emit Nickname(id, nickname);
+        emit NicknameChanged(id, nickname);
     }
 
-    event Avatar(
+    event AvatarChanged(
         address indexed id,
         string avatar
     );
@@ -27,10 +27,10 @@ contract Profiles is Relayable {
         address id,
         string calldata avatar
     ) public onlyRelayer {
-        emit Avatar(id, avatar);
+        emit AvatarChanged(id, avatar);
     }
 
-    event Description(
+    event DescriptionChanged(
         address indexed id,
         string description
     );
@@ -39,7 +39,7 @@ contract Profiles is Relayable {
         address id,
         string memory description
     ) public onlyRelayer {
-        emit Description(id, description);
+        emit DescriptionChanged(id, description);
     }
   
 }

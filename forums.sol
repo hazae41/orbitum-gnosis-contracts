@@ -54,6 +54,18 @@ contract Forums is Relayable {
         emit Ownership(name, owner);
     }
 
+    event Address(
+      string name,
+      address indexed addr
+    );
+
+    function setAddress(
+      string calldata name,
+      address addr
+    ) public onlyRelayer {
+        emit Address(name, addr);
+    }
+
     event Promoted(
         string name,
         address indexed moderator

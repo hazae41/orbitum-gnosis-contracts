@@ -41,5 +41,28 @@ contract Profiles is Relayable {
     ) public onlyRelayer {
         emit DescriptionChanged(id, description);
     }
+    
+    event BadgedChanged(
+      address indexed id,
+      bool badged
+    );
   
+    function setBadged(
+      address id,
+      bool badged
+    ) public onlyRelayer {
+        emit BadgedChanged(id, badged);
+    }
+
+    event RandomChanged(
+      address indexed id,
+      bool random
+    );
+  
+    function setRandom(
+      address id,
+      bool random
+    ) public onlyRelayer {
+        emit RandomChanged(id, random);
+    }
 }

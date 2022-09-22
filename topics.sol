@@ -75,14 +75,16 @@ contract Topics is Relayable {
         emit Modified(post, text);
     }
 
-    event Removed(
-      uint256 indexed post 
+    event HiddenChanged(
+      uint256 indexed post,
+      bool hidden
     );
 
-    function remove(
-      uint256 post
+    function setHidden(
+      uint256 post,
+      bool hidden
     ) public onlyRelayer {
-      emit Removed(post);
+      emit HiddenChanged(post, hidden);
     }
 
     event NSFWChanged(

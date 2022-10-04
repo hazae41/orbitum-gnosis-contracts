@@ -35,7 +35,7 @@ contract Topics is Relayable {
     }
 
     event Replied(
-      uint256 indexed parent,
+      uint256 indexed topic,
       uint256 indexed post,
       address indexed author,
       string text
@@ -43,12 +43,29 @@ contract Topics is Relayable {
 
     function reply(
       address author,
+      uint256 topic,
+      string memory text
+    ) public onlyRelayer {
+      uint256 post = generate();
+
+      emit Replied(topic, post, author, text);
+    }
+
+    event Quoted(
+      uint256 indexed parent,
+      uint256 indexed post,
+      address indexed author,
+      string text
+    );
+
+    function quote(
+      address author,
       uint256 parent,
       string memory text
     ) public onlyRelayer {
       uint256 post = generate();
 
-      emit Replied(parent, post, author, text);
+      emit Quoted(parent, post, author, text);
     }
 
     event Renamed(

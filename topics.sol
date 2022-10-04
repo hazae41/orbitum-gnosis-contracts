@@ -6,7 +6,7 @@ import "./relayable.sol";
 
 contract Topics is Relayable {
 
-    uint16 version = 0;
+    uint16 version = 1;
     uint16 nonce = 0;
 
     function generate() internal returns (uint256) {
@@ -35,7 +35,7 @@ contract Topics is Relayable {
     }
 
     event Replied(
-      uint256 indexed topic,
+      uint256 indexed parent,
       uint256 indexed post,
       address indexed author,
       string text
@@ -43,12 +43,12 @@ contract Topics is Relayable {
 
     function reply(
       address author,
-      uint256 topic,
+      uint256 parent,
       string memory text
     ) public onlyRelayer {
       uint256 post = generate();
 
-      emit Replied(topic, post, author, text);
+      emit Replied(parent, post, author, text);
     }
 
     event Renamed(
